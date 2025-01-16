@@ -1,35 +1,29 @@
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
-local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
-local Window = Fluent:CreateWindow({
-    Title = "YOUHUB | Dig-It | Tiếng Việt",
-    SubTitle = "Owner : rechedmcvn - Developer : ImGV",
-    TabWidth = 160,
-    Size = UDim2.fromOffset(580, 460),
-    Acrylic = true,
-    Theme = "Dark",
-    MinimizeKey = Enum.KeyCode.LeftControl
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/TheNuggetEater05/ekaMiffutSmodnaR/main/EssentialLib", true))()
+local Window = Library:CreateMain({title = "YOUHUB", desc = "by rechedmcvn"})
+local Tabs = {
+Main = Window:CreateTab({image = "http://www.roblox.com/asset/?id=6026568198", title = "Main", desc = "This section has functions that will help you.", ismain = true})
+Players = Window:CreateTab({image = "http://www.roblox.com/asset/?id=6022668945", title = "Player", desc = "This is tab functions about the player."})
+}
+Tabs.Main:AddToggle({text = "Auto Dig", side = "left", callback = function(v)
+_G.AutoDig = v
+while _G.AutoDig and wait(1) do
+if not game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("DigMinigame") then
+game:GetService("ReplicatedStorage").Source.Network.RemoteFunctions.Digging:InvokeServer({
+Command = "CreatePile"
 })
-function Tab(name, text, icon)
-name = Window:AddTab({Title = text, Icon = icon or "home" })
 end
-function Notify(name,desc,time)
-Fluent:Notify({
-        Title = name,
-        Content = desc,
-        Duration = time or 5
-    })
 end
-function Toggle(name, tab, flag, text, default)
-name = tab:AddToggle(flag, {Title = text, Default = default })
+end})
+Tabs.Main:AddToggle({text = "No Miss", side = "right", callback = function(v)
+_G.NoMiss = v
+if _G.NoMiss then
+NoMiss = game.Players.LocalPlayer.PlayerGui.Main.ChildAdded:Connect(function()
+game.Players.LocalPlayer.PlayerGui.Main.DigMinigame.Arena.Size = UDim2.new(9e9,0,1,0)
+end)
+else
+NoMiss:Disconnect()
 end
-
-
-
-
-Tab(Main,"Main","home")
-Tab(Settings,"Settings","settings")
-local Options = Fluent.Options
+end})
 
 
 
