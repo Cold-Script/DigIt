@@ -1,57 +1,38 @@
-local Library = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/ShaddowScripts/Main/main/Library"))()
-local Window = Library:CreateWindow("YOUHUB | Dig-it | v1.2","Crimson")
-local Tabs = {
-Main = Main:CreateTab("Main")
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+local Window = Fluent:CreateWindow({
+    Title = "YOUHUB | Dig-It | Tiếng Việt",
+    SubTitle = "Owner : rechedmcvn - Developer : ImGV",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+function Tab(name, text, icon)
+name = Window:AddTab({Title = text, Icon = icon or "home" })
+end
+function Notify(name,desc,time)
+Fluent:Notify({
+        Title = name,
+        Content = desc,
+        Duration = time or 5
+    })
+end
+function Toggle(name, tab, flag, text, default)
+name = tab:AddToggle(flag, {Title = text, Default = default })
+end
 
 
 
 
-tab:CreateButton("Hi",function()
-
-print("clicked")
-
-end)
+Tab(Main,"Main","home")
+Tab(Settings,"Settings","settings")
+local Options = Fluent.Options
 
 
 
-tab:CreateToggle("Farm",function(a)
-
-print(a)
-
-end)
 
 
 
-tab:CreateSlider("Wow",1,16,function(a)
-
-print(a)
-
-end)
-
-
-
-tab:CreateCheckbox("Aimbot",function(a)
-
-print(a)
-
-end)
-
-
-
-tab:CreateDropdown("Word",{"Sung","Jin","Woo"},function(a)
-
-print(a)
-
-end)
-
-
-
-tab2:CreateButton("Hello",function()
-
-print("clicked")
-
-end)
-
-
-
-tab:Show()
