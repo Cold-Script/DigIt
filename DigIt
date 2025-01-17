@@ -1,32 +1,40 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/TheNuggetEater05/ekaMiffutSmodnaR/main/EssentialLib", true))()
-local Window = Library:CreateMain({title = "YOUHUB", desc = "by rechedmcvn"})
-local Tabs = {
-Main = Window:CreateTab({image = "http://www.roblox.com/asset/?id=6026568198", title = "Main", desc = "This section has functions that will help you.", ismain = true})
-Players = Window:CreateTab({image = "http://www.roblox.com/asset/?id=6022668945", title = "Player", desc = "This is tab functions about the player."})
-}
-Tabs.Main:AddToggle({text = "Auto Dig", side = "left", callback = function(v)
-_G.AutoDig = v
-while _G.AutoDig and wait(1) do
-if not game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("DigMinigame") then
-game:GetService("ReplicatedStorage").Source.Network.RemoteFunctions.Digging:InvokeServer({
-Command = "CreatePile"
-})
-end
-end
-end})
-Tabs.Main:AddToggle({text = "No Miss", side = "right", callback = function(v)
-_G.NoMiss = v
-if _G.NoMiss then
-NoMiss = game.Players.LocalPlayer.PlayerGui.Main.ChildAdded:Connect(function()
-game.Players.LocalPlayer.PlayerGui.Main.DigMinigame.Arena.Size = UDim2.new(9e9,0,1,0)
+local Library = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com/TrixAde/Osmium/main/OsmiumLibrary.lua")))
+local Window = Library:CreateWindow("YOUHUB | Dig it")
+local Main = Window:CreateTab("Main")
+Main:CreateToggle("Auto Dig",false,function(v)
+  
 end)
-else
-NoMiss:Disconnect()
-end
-end})
 
 
 
 
+local dropdown = test:CreateDropdown("DropDown Exemple",{"Nami","Robin","Yamato"},function(val)
+	print(val)
+end)
 
+local label = test:CreateLabel("This is a Title","this is an exemple of description")
 
+local sld = test:CreateSlider("Slider Exemple",-100,100,function(arg)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = arg
+end)
+
+test:CreateTextbox("TextBox Exemple", function(value)
+    print("Value = ", value)
+end, "Write Here")
+
+local toggle = test:CreateToggle("Toggle Exemple",false,function()
+    
+end)
+
+local batp = test:CreateButton("Button Exemple", function()
+    print("c")
+end)
+
+local label = info:CreateLabel("KeyBind :","KeyBind to Close/Open the Gui Is 'Left Control'")
+
+local label = cred:CreateLabel("Interface :","Made by Trix#2794")
+local label = cred:CreateLabel("Interface Scripts :","Made by Trix#2794")
+local label = cred:CreateLabel("Scripting :","by Trix#2794 / JulMan#1234")
+local batp = cred:CreateButton("Copy Discord Server Link", function()
+    setclipboard("discord.gg/TT3y4gkJtq")
+end)
