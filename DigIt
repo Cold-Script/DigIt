@@ -2,9 +2,25 @@ local Library = pcall(loadstring(game:HttpGet("https://raw.githubusercontent.com
 local Window = Library:CreateWindow("YOUHUB | Dig it")
 local Main = Window:CreateTab("Main")
 Main:CreateToggle("Auto Dig",false,function(v)
-  
+_G.AutoDig = v
+while _G.AutoDig and wait(1) do
+if not game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("DigMinigame") then
+game:GetService("ReplicatedStorage").Source.Network.RemoteFunctions.Digging:InvokeServer({
+Command = "CreatePile"
+})
+end
+end
 end)
-
+Main:CreateToggle("",false,function(v)
+_G.AutoDig = v
+while _G.AutoDig and wait(1) do
+if not game.Players.LocalPlayer.PlayerGui.Main:FindFirstChild("DigMinigame") then
+game:GetService("ReplicatedStorage").Source.Network.RemoteFunctions.Digging:InvokeServer({
+Command = "CreatePile"
+})
+end
+end
+end)
 
 
 
